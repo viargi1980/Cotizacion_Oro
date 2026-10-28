@@ -4,6 +4,7 @@ import numpy as np
 import yfinance as yf
 import warnings
 from pathlib import Path
+from datetime import datetime
 
 warnings.simplefilter("ignore")
 
@@ -480,6 +481,11 @@ else:
 # HTML
 # ==========================================
 
+
+actualizacion = datetime.now().strftime(
+    "%d/%m/%Y %H:%M"
+)
+
 html = f"""
 <!DOCTYPE html>
 <html lang="es">
@@ -512,14 +518,14 @@ body {{
     );
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     min-height: 100vh;
 
     color: white;
+
+    padding: 20px;
 }}
 
 .card {{
@@ -538,19 +544,14 @@ body {{
     padding: 40px;
 
     box-shadow:
-    0 0 50px rgba(
-        0,
-        0,
-        0,
-        0.5
-    );
+        0 0 50px rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
 
     text-align: center;
-}}
-
-.header {{
-
-    margin-bottom: 30px;
 }}
 
 .header h1 {{
@@ -558,13 +559,15 @@ body {{
     color: gold;
 
     font-size: 42px;
+
+    margin-bottom: 10px;
 }}
 
 .subtitle {{
 
     color: #cbd5e1;
 
-    margin-top: 10px;
+    font-size: 18px;
 }}
 
 .grid {{
@@ -589,6 +592,14 @@ body {{
     padding: 25px;
 
     min-width: 220px;
+
+    box-shadow:
+        0 0 15px rgba(
+            255,
+            255,
+            255,
+            0.05
+        );
 }}
 
 .label {{
@@ -598,22 +609,24 @@ body {{
     font-size: 14px;
 
     text-transform: uppercase;
+
+    letter-spacing: 1px;
 }}
 
 .value {{
 
     margin-top: 10px;
 
-    font-size: 32px;
+    font-size: 30px;
 
     font-weight: bold;
 }}
 
 .circle {{
 
-    width: 250px;
+    width: 260px;
 
-    height: 250px;
+    height: 260px;
 
     border-radius: 50%;
 
@@ -629,14 +642,14 @@ body {{
 
     align-items: center;
 
-    margin: 30px auto;
+    margin: 35px auto;
 }}
 
 .circle-inner {{
 
-    width: 190px;
+    width: 195px;
 
-    height: 190px;
+    height: 195px;
 
     border-radius: 50%;
 
@@ -644,9 +657,23 @@ body {{
 
     display: flex;
 
-    align-items: center;
+    flex-direction: column;
 
     justify-content: center;
+
+    align-items: center;
+}}
+
+.circle-label {{
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    margin-bottom: 6px;
+}}
+
+.circle-value {{
 
     font-size: 42px;
 
@@ -684,15 +711,30 @@ body {{
     width: {prob*100:.2f}%;
 
     background: {color};
+}}
 
-    transition: width 1s ease;
+.stats {{
+
+    margin-top: 25px;
+
+    font-size: 22px;
 }}
 
 .footer {{
 
-    margin-top: 30px;
+    margin-top: 35px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #374151;
 
     color: #94a3b8;
+
+    font-size: 15px;
+}}
+
+.footer strong {{
+    color: white;
 }}
 
 </style>
@@ -703,61 +745,79 @@ body {{
 
 <div class="card">
 
-<div class="header">
+    <div class="header">
 
-<h1>📈 Predicción Oro IA</h1>
+        <h1>📈 Predicción Oro IA</h1>
 
-</div>
+        <div class="subtitle">
+            Análisis automático mediante Machine Learning
+        </div>
 
-<div class="grid">
+    </div>
 
-<div class="box">
+    <div class="grid">
 
-<div class="label">
-Fecha
-</div>
+        <div class="box">
 
-<div class="value">
-{fecha}
-</div>
+            <div class="label">
+                Fecha Mercado
+            </div>
 
-</div>
+            <div class="value">
+                {fecha}
+            </div>
 
-<div class="box">
+        </div>
 
-<div class="label">
-Precio Oro
-</div>
+        <div class="box">
 
-<div class="value">
-${precio}
-</div>
+            <div class="label">
+                Precio Oro
+            </div>
 
-</div>
+            <div class="value">
+                ${precio}
+            </div>
 
-</div>
+        </div>
 
-<div class="circle">
+    </div>
 
-<div class="circle-inner">
+    <div class="circle">
 
-{prob:.2%}
+        <div class="circle-inner">
 
-</div>
+            <div class="circle-label">
+                Probabilidad
+            </div>
 
-</div>
+            <div class="circle-value">
+                {prob:.2%}
+            </div>
 
-<div class="signal">
+        </div>
 
-{señal}
+    </div>
 
-</div>
+    <div class="signal">
+        {señal}
+    </div>
 
-<div class="progress-container">
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
 
-<div class="progress-bar"></div>
+    <div class="stats">
+        Predicción del modelo:
+        <strong>{pred}</strong>
+    </div>
 
-</div>
+    <div class="footer">
+
+        Última actualización de la web:
+        <strong>{actualizacion}</strong>
+
+    </div>
 
 </div>
 
