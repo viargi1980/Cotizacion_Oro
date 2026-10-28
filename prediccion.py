@@ -772,10 +772,16 @@ ${precio}
 
 #from pathlib import Path
 
+from pathlib import Path
+
 html_file = Path(__file__).resolve().parent / "index.html"
+
+print("Ruta HTML:")
+print(html_file)
 
 with open(html_file, "w", encoding="utf-8") as f:
     f.write(html)
+
 
 print()
 print(f"✅ HTML generado: {html_file}")
