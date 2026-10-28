@@ -770,16 +770,30 @@ ${precio}
 # GUARDAR HTML
 # ==========================================
 
-#from pathlib import Path
+from pathlib import Path
 
-#from pathlib import Path
+# Carpeta docs
+docs_dir = Path(__file__).resolve().parent / "docs"
 
-html_file = Path(__file__).resolve().parent / "index.html"
+# Crear docs si no existe
+docs_dir.mkdir(
+    parents=True,
+    exist_ok=True
+)
 
-with open(html_file, "w", encoding="utf-8") as f:
+# Fichero HTML
+html_file = docs_dir / "index.html"
+
+with open(
+    html_file,
+    "w",
+    encoding="utf-8"
+) as f:
     f.write(html)
 
-print("✅ HTML generado:", html_file)
+print()
+print("✅ HTML generado")
+print(f"📄 {html_file}")
 
 # ==========================================
 # RESULTADO
