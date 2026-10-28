@@ -33,11 +33,6 @@ venvOro/
 # Si quieres conservar algunos CSV:
 !ranking_modelos.csv
 
-# ==========================================
-# HTML GENERADOS
-# ==========================================
-
-index.html
 
 # ==========================================
 # JUPYTER
