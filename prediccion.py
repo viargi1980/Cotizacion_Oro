@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import warnings
+from pathlib import Path
 
 warnings.simplefilter("ignore")
 
@@ -457,22 +458,22 @@ precio = round(
 
 if prob >= 0.50:
 
-    señal = "🟢 SEÑAL MUY FUERTE"
+    señal = "🟢 SEÑAL MUY FUERTE 🟢"
     color = "#22c55e"
 
 elif prob >= 0.30:
 
-    señal = "🟡 POSIBLE COMPRA"
+    señal = "🟡 POSIBLE COMPRA 🟡"
     color = "#eab308"
 
 elif prob >= 0.15:
 
-    señal = "🟠 VIGILAR"
+    señal = "🟠 VIGILAR 🟠"
     color = "#f97316"
 
 else:
 
-    señal = "🔴 NO COMPRAR"
+    señal = "🔴 NO COMPRAR 🔴"
     color = "#ef4444"
 
 # ==========================================
@@ -706,10 +707,6 @@ body {{
 
 <h1>📈 Predicción Oro IA</h1>
 
-<div class="subtitle">
-Modelo de Machine Learning
-</div>
-
 </div>
 
 <div class="grid">
@@ -762,13 +759,6 @@ ${precio}
 
 </div>
 
-<div class="footer">
-
-Predicción del modelo:
-<strong>{pred}</strong>
-
-</div>
-
 </div>
 
 </body>
@@ -780,16 +770,15 @@ Predicción del modelo:
 # GUARDAR HTML
 # ==========================================
 
-with open(
-    "index.html",
-    "w",
-    encoding="utf-8"
-) as f:
+#from pathlib import Path
 
+html_file = Path(__file__).resolve().parent / "index.html"
+
+with open(html_file, "w", encoding="utf-8") as f:
     f.write(html)
 
 print()
-print("✅ index.html generado")
+print(f"✅ HTML generado: {html_file}")
 
 # ==========================================
 # RESULTADO
@@ -809,16 +798,16 @@ print(
 print()
 
 if prob >= 0.50:
-    print("🟢 SEÑAL MUY FUERTE")
+    print("🟢 SEÑAL MUY FUERTE 🟢")
 
 elif prob >= 0.30:
-    print("🟡 POSIBLE COMPRA")
+    print("🟡 POSIBLE COMPRA 🟡")
 
 elif prob >= 0.15:
-    print("🟠 VIGILAR")
+    print("🟠 VIGILAR 🟠")
 
 else:
-    print("🔴 NO COMPRAR")
+    print("🔴 NO COMPRAR 🔴")
 
 print()
 
